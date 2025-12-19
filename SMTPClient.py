@@ -16,27 +16,37 @@ if recv[:3] != '220':
  	print('220 reply not received from server.') 
 
 # Send HELO command and print server response. heloCommand = 'HELO Alice\r\n' clientSocket.send(heloCommand.encode()) recv1 = clientSocket.recv(1024).decode() print(recv1) if recv1[:3] != '250': 
-heloCommand = 'HELO gmail.com\r\n'
+heloCommand = 'HELO ALICE\r\n'
 clientSocket.send(heloCommand.encode())
-recv1 = clientSocket.recv(1024)
+recv1 = clientSocket.recv(1024).decode
 print(recv1)
 if recv1[:3] != '250':  
     print('250 reply not received from server.') 
      
 # Send MAIL FROM command and print server response. 
-# Fill in start 
-
-# Fill in end 
+mailFrom = "MAIL FROM: <**Enter mail from address**>>\r\n"
+clientSocket.send(mailFrom)
+recv2 = clientSocket.recv(1024)
+print(recv2)
+if recv2[:-2] != '250':
+    print('250 reply not received from server.')
+	 
 
 # Send RCPT TO command and print server response.  
-# Fill in start 
+rcptto = "RCPT TO: <**Enter mail to address**>>\r\n"
+clientSocket.send(rcptto)
+recv3 = clientSocket.recv(1024)
+if recv3[:9] != "250 2.1.5":
+       print('250 2.1.5 reply not received from server.')
 
-# Fill in end 
 
 # Send DATA command and print server response.  
-# Fill in start 
+data = 'DATA\r\n'
+clientSocket.send(data)
+recv4 = clientSocket.recv(1024)
+if recv4[:3] != 354:
+       print('354 reply not received from server.')
 
-# Fill in end 
 
 # Send message data. 
 # Fill in start 
@@ -53,10 +63,10 @@ if recv1[:3] != '250':
 # Fill in end 
   
 #Fill in end recv = clientSocket.recv(1024).decode() print(recv) if recv[:3] != '220': 
- 	print('220 reply not received from server.') 
+ 	# print('220 reply not received from server.') 
  
 # Send HELO command and print server response. heloCommand = 'HELO Alice\r\n' clientSocket.send(heloCommand.encode()) recv1 = clientSocket.recv(1024).decode() print(recv1) if recv1[:3] != '250': 
-    print('250 reply not received from server.') 
+    # print('250 reply not received from server.') 
      
 # Send MAIL FROM command and print server response. 
 # Fill in start 
