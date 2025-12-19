@@ -49,17 +49,27 @@ if recv4[:3] != 354:
 
 
 # Send message data. 
-# Fill in start 
+print('msg to send: ')
+print(msg)
+clientSocket.send(msg.encode()) 
 
-# Fill in end 
 # Message ends with a single period. 
-# Fill in start 
-
-# Fill in end 
+clientSocket.send(endmsg.encode())
+recv5 = clientSocket.recv(1024)
+print(recv5[:2])
+if recv5[:9] != '250 2.0.0':
+    print('250 reply not received from server.')
 
 # Send QUIT command and get server response. 
 # Fill in start 
-
+quitCommand = 'QUIT\r\n'
+clientSocket.send(quitCommand.encode())
+recv6 = clientSocket.recv(1024)
+print(recv6[:-2])
+if recv6[:-2] != '221 2.0.0':
+    print('221 reply not received from server.')
+clientSocket.close()
+print('Mail sent, Great Success!')
 # Fill in end 
   
 #Fill in end recv = clientSocket.recv(1024).decode() print(recv) if recv[:3] != '220': 
